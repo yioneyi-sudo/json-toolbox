@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
@@ -74,6 +73,13 @@ export default function RootLayout({
               })();
             `,
           }}
+        />
+
+        {/* Cloudflare Web Analytics */}
+        <script
+          type="module"
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "4b48cea07a7b4186bfb989539a19ad99"}'
         />
 
         <ThemeProvider>
