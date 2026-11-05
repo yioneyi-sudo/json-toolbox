@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   verification: {
-  google: "0sv2lh7WHng1W5eb6KMGkWIes9DPYIveQzIooyw62Ao",
+    google: "0sv2lh7WHng1W5eb6KMGkWIes9DPYIveQzIooyw62Ao",
   },
 };
 
@@ -55,41 +55,59 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-         <ThemeProvider>
-        <header className="header">
-          <div className="logo">
-            <Link href="/" className="logo-link">
-              <span className="logo-icon">{"{ }"}</span>
-              JSON Toolbox
-            </Link>
-          </div>
+      <body
+        className="min-h-full flex flex-col"
+        suppressHydrationWarning
+      >
+        {/* 在页面内容渲染前应用已保存的主题，避免主题闪烁 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                try {
+                  var savedTheme = localStorage.getItem("json-toolbox-theme");
+                  var isDark = savedTheme !== "light";
+                  document.body.classList.toggle("dark-mode", isDark);
+                } catch (error) {
+                  document.body.classList.add("dark-mode");
+                }
+              })();
+            `,
+          }}
+        />
 
-          <nav className="main-nav">
-            <Link href="/about">About</Link>
-            <Link href="/privacy">Privacy</Link>
-            <Link href="/contact">Contact</Link>
-          </nav>
+        <ThemeProvider>
+          <header className="header">
+            <div className="logo">
+              <Link href="/" className="logo-link">
+                <span className="logo-icon">{"{ }"}</span>
+                JSON Toolbox
+              </Link>
+            </div>
 
-          <div className="actions">
-            <ThemeToggle />
-            <span className="free-tag">100% Free</span>
-          </div>
-        </header>
-      
-        <main className="flex-1">
-          {children}
-        </main>
+            <nav className="main-nav">
+              <Link href="/about">About</Link>
+              <Link href="/privacy">Privacy</Link>
+              <Link href="/contact">Contact</Link>
+            </nav>
 
-        <footer className="footer">
-          <p>© 2026 JSON Toolbox. Free tools for developers.</p>
+            <div className="actions">
+              <ThemeToggle />
+              <span className="free-tag">100% Free</span>
+            </div>
+          </header>
 
-          <div className="footer-links">
-            <Link href="/about">About Us</Link>
-            <Link href="/privacy">Privacy Policy</Link>
-            <Link href="/contact">Contact Us</Link>
-          </div>
-        </footer>
+          <main className="flex-1">{children}</main>
+
+          <footer className="footer">
+            <p>© 2026 JSON Toolbox. Free tools for developers.</p>
+
+            <div className="footer-links">
+              <Link href="/about">About Us</Link>
+              <Link href="/privacy">Privacy Policy</Link>
+              <Link href="/contact">Contact Us</Link>
+            </div>
+          </footer>
         </ThemeProvider>
       </body>
     </html>

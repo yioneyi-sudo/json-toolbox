@@ -22,18 +22,18 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState(true);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // 读取用户之前保存的主题
+  // 初始化时读取之前保存的主题
   useEffect(() => {
     const savedTheme = localStorage.getItem("json-toolbox-theme");
+    const shouldUseDark = savedTheme !== "light";
 
-    if (savedTheme === "dark") {
-      setIsDark(true);
-    }
+    setIsDark(shouldUseDark);
+    document.body.classList.toggle("dark-mode", shouldUseDark);
 
     setIsInitialized(true);
   }, []);
 
-  // 同步主题并保存用户选择
+  // 保存主题设置，并同步页面样式
   useEffect(() => {
     if (!isInitialized) return;
 
