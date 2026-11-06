@@ -10,6 +10,7 @@ export default function Home() {
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
   const [errorLocation, setErrorLocation] = useState("");
+  const [errorCause, setErrorCause] = useState("");
   const [message, setMessage] = useState("");
   const [activeMode, setActiveMode] = useState<
     "format" | "minify" | "validate" | ""
@@ -28,6 +29,7 @@ export default function Home() {
     ) {
       setError("Please upload a valid JSON file.");
       setErrorLocation("");
+      setErrorCause("");
       setMessage("");
       event.target.value = "";
       return;
@@ -40,18 +42,22 @@ export default function Home() {
       setOutput("");
       setError("");
       setErrorLocation("");
+      setErrorCause("");
       setActiveMode("");
       setFileName(file.name);
       setMessage(`File "${file.name}" loaded successfully!`);
     } catch {
       setError("Unable to read this file. Please try again.");
       setErrorLocation("");
+      setErrorCause("");
       setMessage("");
     }
 
     // Allow the user to select the same file again.
     event.target.value = "";
   }
+
+  // Format, minify, or validate JSON.
 
   // Format, minify, or validate JSON.
   function processJson(mode: "format" | "minify" | "validate") {
@@ -77,6 +83,7 @@ export default function Home() {
 
       setError("");
       setErrorLocation("");
+      setErrorCause("");
     } catch (err) {
       setOutput("");
       setMessage("");
@@ -88,11 +95,77 @@ export default function Home() {
 
       setError(errorMessage);
 
-      // Try to extract the error position from the browser error.
-      const match = errorMessage.match(/position\s+(\d+)/i);
+      // Try to identify a possible syntax error.
+      let cause = "";
 
-      if (match) {
-        const position = Number(match[1]);
+      if (/,\s*[}\]]/.test(input)) {
+        cause = 'Possible cause: Unexpected trailing comma before "}" or "]".';
+      } else if (
+        /[{,]\s*[A-Za-z_$][\w$]*\s*:/.test(input)
+      ) {
+        cause = "Possible cause: An object property name may be missing double quotes.";
+      } else {
+        // Check whether brackets are balanced.
+        const stack: string[] = [];
+        let inString = false;
+        let escaped = false;
+        let mismatch = false;
+
+        for (const char of input) {
+          if (inString) {
+            if (escaped) {
+              escaped = false;
+            } else if (char === "\\") {
+              escaped = true;
+            } else if (char === '"') {
+              inString = false;
+            }
+            continue;
+          }
+
+          if (char === '"') {
+            inString = true;
+          } else if (char === "{" || char === "[") {
+            stack.push(char);
+          } else if (char === "}" || char === "]") {
+            const last = stack.pop();
+
+            if (
+              (char === "}" && last !== "{") ||
+              (char === "]" && last !== "[")
+            ) {
+              mismatch = true;
+              break;
+            }
+          }
+        }
+
+        if (mismatch || stack.length > 0) {
+          cause = "Possible cause: A bracket may be missing or mismatched.";
+        } else {
+          cause = "Possible cause: A comma may be missing between JSON values, or another syntax error may exist.";
+        }
+      }
+
+      setErrorCause(cause);
+
+      // Try to extract the error position.
+      const positionMatch = errorMessage.match(/position\s+(\d+)/i);
+      let position = -1;
+
+      if (positionMatch) {
+        position = Number(positionMatch[1]);
+      } else {
+        const tokenMatch = errorMessage.match(
+          /Unexpected token\s+['"](.+?)['"]/i
+        );
+
+        if (tokenMatch) {
+          position = input.lastIndexOf(tokenMatch[1]);
+        }
+      }
+
+      if (position >= 0 && position <= input.length) {
         const textBeforeError = input.slice(0, position);
         const lines = textBeforeError.split("\n");
 
@@ -102,11 +175,12 @@ export default function Home() {
         setErrorLocation(`Line ${line}, Column ${column}`);
       } else {
         setErrorLocation(
-          "Exact position is unavailable in this browser."
+          "Error detected, but the exact position is unavailable."
         );
       }
     }
   }
+
 
   // Copy the output to the clipboard.
   async function copyOutput() {
@@ -144,6 +218,7 @@ export default function Home() {
     setOutput("");
     setError("");
     setErrorLocation("");
+    setErrorCause("");
     setMessage("");
     setActiveMode("");
     setFileName("");
@@ -155,6 +230,7 @@ export default function Home() {
     setOutput("");
     setError("");
     setErrorLocation("");
+    setErrorCause("");
     setMessage("");
     setFileName("");
     setActiveMode("");
@@ -264,6 +340,7 @@ export default function Home() {
                 setInput(e.target.value);
                 setError("");
                 setErrorLocation("");
+                setErrorCause("");
                 setMessage("");
                 setActiveMode("");
               }}
@@ -286,26 +363,30 @@ export default function Home() {
             <pre>{output || "Your result will appear here..."}</pre>
           </div>
         </div>
+      {/* Error Message */}
+      {error && (
+        <div className="error">
+          <strong>Invalid JSON</strong>
 
-        {/* Error Message */}
-        {error && (
-          <div className="error">
-            <strong>Invalid JSON</strong>
+          <p>{error}</p>
 
-            <p>{error}</p>
-
-            {errorLocation && (
-              <p>
-                <strong>Error Location: </strong>
-                {errorLocation}
-              </p>
-            )}
-
+          {errorLocation && (
             <p>
-              Please check the JSON syntax near the reported position.
+              <strong>Error Location: </strong>
+              {errorLocation}
             </p>
-          </div>
-        )}
+          )}
+
+          {errorCause && (
+            <p>{errorCause}</p>
+          )}
+
+          <p>
+            Please check the JSON syntax near the reported position.
+          </p>
+        </div>
+      )}
+
 
         {/* Success Message */}
         {message && (
