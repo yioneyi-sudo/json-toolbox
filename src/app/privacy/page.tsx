@@ -1,16 +1,18 @@
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | JSON Toolbox",
   description:
-    "Read the JSON Toolbox privacy policy and learn how your JSON data is processed locally in your browser.",
+    "Learn how JSON Toolbox processes JSON data locally and uses privacy-focused website analytics.",
 };
+
 export default function PrivacyPage() {
   return (
     <main className="content-page">
       <h1>Privacy Policy</h1>
 
-      <p>Last updated: November 3, 2026</p>
+      <p>Last updated: November 6, 2026</p>
 
       <p>
         Your privacy matters to us. This Privacy Policy
@@ -24,39 +26,70 @@ export default function PrivacyPage() {
         JSON formatting, validation, and minification
         are performed locally in your browser.
         JSON content processed by these features is
-        not uploaded to our servers.
+        not uploaded to our servers for processing.
+      </p>
+
+      <p>
+        When you upload a JSON file, the file is read
+        locally by your browser. We do not upload the
+        file to our servers. Downloaded files are also
+        generated directly in your browser.
       </p>
 
       <h2>2. Information We Collect</h2>
 
       <p>
-        We do not require users to create an account
-        or provide personal information to use the
-        core JSON tools.
+        You do not need to create an account or provide
+        personal information to use the core JSON tools.
       </p>
 
       <p>
-        If we introduce analytics, advertising, or
-        other third-party services in the future,
-        this policy will be updated to explain what
-        information those services may collect.
+        We use Cloudflare Web Analytics to understand
+        general website usage, including page views,
+        visits, and website performance.
       </p>
 
-      <h2>3. Cookies</h2>
+      <p>
+        According to Cloudflare, its Web Analytics
+        service does not use cookies or browser storage
+        to track individual visitors and does not use
+        fingerprinting for analytics purposes.
+      </p>
+
+      <h2>3. Cookies and Local Storage</h2>
 
       <p>
-        Our current core JSON tools do not require
-        cookies to process your JSON data.
-        Third-party services, if added, may use
-        cookies or similar technologies.
+        Our core JSON tools do not require cookies
+        to process your JSON data.
+      </p>
+
+      <p>
+        We use browser local storage to remember your
+        preferred display theme, such as dark mode or
+        light mode. This preference is stored locally
+        in your browser.
+      </p>
+
+      <p>
+        Cloudflare Web Analytics does not use cookies
+        or local storage for its analytics metrics.
       </p>
 
       <h2>4. Third-Party Services</h2>
 
       <p>
-        Our website may link to third-party websites.
-        We are not responsible for their privacy
-        practices or content.
+        Our website uses Cloudflare Web Analytics.
+        This service is provided by Cloudflare and
+        helps us understand general website traffic
+        and performance.
+      </p>
+
+      <p>
+        Our website may also contain links to
+        third-party websites. We are not responsible
+        for their privacy practices or content.
+        Please review their privacy policies when
+        visiting those websites.
       </p>
 
       <h2>5. Data Security</h2>
@@ -67,18 +100,28 @@ export default function PrivacyPage() {
         over the internet.
       </p>
 
+      <p>
+        However, no method of internet transmission
+        or electronic storage is completely secure.
+      </p>
+
       <h2>6. Policy Updates</h2>
 
       <p>
         We may update this Privacy Policy as our
-        website and services evolve.
+        website and services evolve. Any changes
+        will be posted on this page with an updated
+        revision date.
       </p>
 
       <h2>7. Contact</h2>
 
       <p>
         If you have questions about this Privacy Policy,
-        please visit our Contact page.
+        please contact us at{" "}
+        <a href="mailto:zjy15827189621@gmail.com">
+          zjy15827189621@gmail.com
+        </a>.
       </p>
     </main>
   );
