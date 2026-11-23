@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ChangeEvent } from "react";
+import { parse as parseLossless, stringify as stringifyLossless } from "lossless-json";
 
 export default function Home() {
   const [input, setInput] = useState(
@@ -64,20 +65,20 @@ export default function Home() {
     setActiveMode(mode);
 
     try {
-      const parsed = JSON.parse(input);
+      const parsed = parseLossless(input);
 
       if (mode === "format") {
-        setOutput(JSON.stringify(parsed, null, 2));
+        setOutput(stringifyLossless(parsed, null, 2)?? "");
         setMessage("JSON formatted successfully!");
       }
 
       if (mode === "minify") {
-        setOutput(JSON.stringify(parsed));
+        setOutput(stringifyLossless(parsed)?? "");
         setMessage("JSON minified successfully!");
       }
 
       if (mode === "validate") {
-        setOutput(JSON.stringify(parsed, null, 2));
+        setOutput(stringifyLossless(parsed, null, 2)?? "");
         setMessage("Valid JSON! Your data is correctly formatted.");
       }
 
