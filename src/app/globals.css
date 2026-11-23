@@ -557,3 +557,250 @@ body.dark-mode .footer {
     gap: 16px;
   }
 }
+
+
+/* ========================================
+   JSON to CSV page redesign
+   ======================================== */
+
+.json-csv-page {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 56px 0 80px;
+}
+
+/* Hero */
+.json-csv-page > header {
+  max-width: 760px;
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+.json-csv-page > header h1 {
+  margin: 0 0 18px;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  font-weight: 800;
+}
+
+.json-csv-page > header p {
+  max-width: 650px;
+  margin: 0 auto;
+  color: #94a3b8;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* Main tool sections */
+.json-csv-page > section {
+  margin-bottom: 28px;
+}
+
+/* Input and output panel */
+.json-csv-page textarea {
+  display: block;
+  width: 100%;
+  min-height: 300px;
+  padding: 20px;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  background: #111c30;
+  color: #e2e8f0;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.8;
+  resize: vertical;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.json-csv-page textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.json-csv-page textarea::placeholder {
+  color: #64748b;
+}
+
+/* Section headings */
+.json-csv-page h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+/* Tool buttons */
+.json-csv-page button,
+.json-csv-page .upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 17px;
+  border: 1px solid #334155;
+  border-radius: 9px;
+  background: #1e293b;
+  color: #e2e8f0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
+}
+
+.json-csv-page button:hover,
+.json-csv-page .upload-button:hover {
+  background: #334155;
+  border-color: #475569;
+}
+
+.json-csv-page button:active {
+  transform: translateY(1px);
+}
+
+.json-csv-page button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Convert button */
+.json-csv-page > button {
+  width: 100%;
+  min-height: 52px;
+  margin: 4px 0 28px;
+  border: 1px solid #2563eb;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.json-csv-page > button:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Input toolbar */
+.json-csv-page .toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+/* Success and error messages */
+.json-csv-page [role="alert"],
+.json-csv-page [role="status"] {
+  margin: 0 0 24px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.json-csv-page [role="alert"] {
+  border: 1px solid #7f1d1d;
+  background: #450a0a;
+  color: #fecaca;
+}
+
+.json-csv-page [role="status"] {
+  border: 1px solid #166534;
+  background: #052e16;
+  color: #bbf7d0;
+}
+
+/* How-to section */
+.json-csv-page > section:last-child {
+  margin-top: 56px;
+  padding: 28px 32px;
+  border: 1px solid #334155;
+  border-radius: 14px;
+  background: #172338;
+}
+
+.json-csv-page > section:last-child h2 {
+  margin-bottom: 20px;
+  font-size: 21px;
+}
+
+.json-csv-page > section:last-child ol {
+  margin: 0;
+  padding-left: 22px;
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.json-csv-page > section:last-child p {
+  margin: 20px 0 0;
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .json-csv-page {
+    width: calc(100% - 28px);
+    padding: 36px 0 56px;
+  }
+
+  .json-csv-page > header {
+    margin-bottom: 32px;
+  }
+
+  .json-csv-page > header h1 {
+    font-size: 32px;
+    letter-spacing: -0.8px;
+  }
+
+  .json-csv-page > header p {
+    font-size: 14px;
+  }
+
+  .json-csv-page textarea {
+    min-height: 260px;
+    padding: 14px;
+    font-size: 13px;
+  }
+
+  .json-csv-page > section:last-child {
+    margin-top: 40px;
+    padding: 22px 18px;
+  }
+
+  .json-csv-page .toolbar {
+    align-items: flex-start;
+  }
+}
+
+.json-csv-badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.json-csv-badges span {
+  padding: 7px 13px;
+  border: 1px solid #334155;
+  border-radius: 999px;
+  background: #1e293b;
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
