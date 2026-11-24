@@ -428,6 +428,24 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Related Tool */}
+      <section className="seo-content">
+        <h2>More Free JSON Tools</h2>
+
+        <h3>
+          <a href="/json-to-csv">
+            JSON to CSV Converter
+          </a>
+        </h3>
+
+        <p>
+          Need to convert JSON data into a spreadsheet?
+          Use our free JSON to CSV converter to transform
+          JSON arrays and objects into CSV files that you
+          can open in Excel or Google Sheets.
+        </p>
+      </section>
+
       {/* SEO Content */}
       <section className="seo-content">
         <h2>Free Online JSON Tools</h2>
