@@ -383,6 +383,26 @@ export default function JsonToCsvPage() {
           browser. Your JSON file is not uploaded to a server.
         </p>
       </section>
+
+      {/* Related Tool */}
+      <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
+        <h2 className="mb-3 text-lg font-semibold text-slate-900 dark:text-white">
+          More Free JSON Tools
+        </h2>
+
+        <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
+          Need to format or validate your JSON before converting it?
+          Try our free{" "}
+          <a
+            href="/"
+            className="font-medium text-blue-600 underline underline-offset-4 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+          >
+            JSON Formatter and Validator
+          </a>{" "}
+          to format, minify, and validate JSON directly in your browser.
+        </p>
+      </section>
+
     </main>
   );
 }
