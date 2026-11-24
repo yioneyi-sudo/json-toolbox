@@ -804,3 +804,156 @@ body.dark-mode .footer {
 }
 
 
+/* ========================================
+   JSON to CSV - Light & Dark Theme
+   ======================================== */
+
+/* Light Mode */
+.json-csv-page > header p {
+  color: #64748b;
+}
+
+.json-csv-page textarea {
+  background: #f8fafc;
+  color: #172033;
+  border-color: #dbe3ef;
+}
+
+.json-csv-page textarea::placeholder {
+  color: #94a3b8;
+}
+
+.json-csv-page button,
+.json-csv-page .upload-button {
+  background: #ffffff;
+  border-color: #dbe3ef;
+  color: #334155;
+}
+
+.json-csv-page button:hover,
+.json-csv-page .upload-button:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+/* Convert button */
+.json-csv-page > button {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.json-csv-page > button:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* How-to section */
+.json-csv-page > section:last-child {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+.json-csv-page > section:last-child ol {
+  color: #475569;
+}
+
+.json-csv-page > section:last-child p {
+  color: #64748b;
+}
+
+/* Badges */
+.json-csv-badges span {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #475569;
+}
+
+/* Status messages */
+.json-csv-page [role="alert"] {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.json-csv-page [role="status"] {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #15803d;
+}
+
+
+/* ========================================
+   Dark Mode
+   ======================================== */
+
+body.dark-mode .json-csv-page > header p {
+  color: #94a3b8;
+}
+
+body.dark-mode .json-csv-page textarea {
+  background: #111c30;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
+body.dark-mode .json-csv-page button,
+body.dark-mode .json-csv-page .upload-button {
+  background: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+body.dark-mode .json-csv-page button:hover,
+body.dark-mode .json-csv-page .upload-button:hover {
+  background: #334155;
+  border-color: #475569;
+}
+
+/* Convert button */
+body.dark-mode .json-csv-page > button {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+body.dark-mode .json-csv-page > button:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* How-to section */
+body.dark-mode .json-csv-page > section:last-child {
+  background: #172338;
+  border-color: #334155;
+}
+
+body.dark-mode .json-csv-page > section:last-child ol {
+  color: #cbd5e1;
+}
+
+body.dark-mode .json-csv-page > section:last-child p {
+  color: #94a3b8;
+}
+
+/* Badges */
+body.dark-mode .json-csv-badges span {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+/* Status messages */
+body.dark-mode .json-csv-page [role="alert"] {
+  background: #450a0a;
+  border-color: #7f1d1d;
+  color: #fecaca;
+}
+
+body.dark-mode .json-csv-page [role="status"] {
+  background: #052e16;
+  border-color: #166534;
+  color: #bbf7d0;
+}
+
+
